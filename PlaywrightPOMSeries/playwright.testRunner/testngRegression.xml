@@ -7,12 +7,14 @@
 	</listeners>
 
 	<test name="Open Cart Home Page Test">
+	<parameter name="browser" value="chromium"></parameter>
 		<classes>
 			<class name= "playwright.testcases.HomePageTest" />
 		</classes>
 	</test>
 	
 	<test name="Open Cart Login Page Test">
+	<parameter name="browser" value="firefox"></parameter>
 		<classes>
 			<class name= "playwright.testcases.LoginPageTest" />
 		</classes>

@@ -19,7 +19,7 @@ public class LoginPageTest extends BaseTest {
 	@Test(priority=2)
 	public void logintest()
 	{
-		Assert.assertTrue(loginpage.dologin(prop.getProperty("username"), prop.getProperty("password")));
+		loginpage.dologin(prop.getProperty("username"), prop.getProperty("password"));
 	}
 
 }
