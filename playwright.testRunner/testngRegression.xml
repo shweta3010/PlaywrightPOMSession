@@ -14,7 +14,7 @@
 	</test>
 	
 	<test name="Open Cart Login Page Test">
-	<parameter name="browser" value="edge"></parameter>
+	<parameter name="browser" value="chromium"></parameter>
 		<classes>
 			<class name= "playwright.testcases.LoginPageTest" />
 		</classes>
