@@ -12,7 +12,7 @@ pipeline
         {
             steps
             {
-                echo("deploy to qa")
+                echo("deploy to build")
             }
            
         }
@@ -38,13 +38,7 @@ pipeline
         
         stage('Publish Extent Report'){
             steps{
-                     publishHTML([allowMissing: false,
-                                  alwaysLinkToLastBuild: false, 
-                                  keepAll: true, 
-                                  reportDir: 'build', 
-                                  reportFiles: 'TestExecutionReport.html', 
-                                  reportName: 'HTML Extent Report', 
-                                  reportTitles: ''])
+                     echo("deploy to report")
             }
         }
         
