@@ -40,6 +40,13 @@ pipeline
         stage('Publish Extent Report'){
             steps{
                      echo("deploy to report")
+                     publishHTML([allowMissing: false,
+                                  alwaysLinkToLastBuild: false, 
+                                  keepAll: true, 
+                                  reportDir: 'build', 
+                                  reportFiles: 'TestExecutionReport.html', 
+                                  reportName: 'Extent HTML Report', 
+                                  reportTitles: ''])
             }
         }
         
