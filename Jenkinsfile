@@ -27,7 +27,7 @@ pipeline
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                     git 'https://github.com/shweta3010/PlaywrightPOMSession'
-                    sh "mvn clean test -Dsurefire.suiteXmlFiles=playwright.testRunner/testngRegression.xml"
+                    sh "mvn clean install test -Dsurefire.suiteXmlFiles=playwright.testRunner/testngRegression.xml"
                     
                 }
             }
