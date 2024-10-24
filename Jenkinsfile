@@ -3,16 +3,26 @@ pipeline
     agent any
     
     tools{
-    	maven 'Maven-3.9.9'
+    	maven 'maven'
         }
 
     stages 
     {
         stage('Build') 
         {
-           steps{
-                echo("Build")
-            } 
+            steps
+            {
+                 git 'https://github.com/jglick/simple-maven-project-with-tests.git'
+                 sh "mvn -Dmaven.test.failure.ignore=true clean package"
+            }
+            post 
+            {
+                success
+                {
+                    junit '**/target/surefire-reports/TEST-*.xml'
+                    archiveArtifacts 'target/*.jar'
+                }
+            }
         }
         
         
@@ -27,7 +37,7 @@ pipeline
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                     git 'https://github.com/shweta3010/PlaywrightPOMSession'
-                    sh "mvn clean install test -Dsurefire.suiteXmlFiles=playwright.testRunner/testngRegression.xml"
+                    sh "mvn clean test -Dsurefire.suiteXmlFiles=playwright.testRunner/testngRegression.xml"
                     
                 }
             }
@@ -36,7 +46,13 @@ pipeline
         
         stage('Publish Extent Report'){
             steps{
-                echo("Report")
+                     publishHTML([allowMissing: false,
+                                  alwaysLinkToLastBuild: false, 
+                                  keepAll: true, 
+                                  reportDir: 'build', 
+                                  reportFiles: 'TestExecutionReport.html', 
+                                  reportName: 'HTML Extent Report', 
+                                  reportTitles: ''])
             }
         }
         
